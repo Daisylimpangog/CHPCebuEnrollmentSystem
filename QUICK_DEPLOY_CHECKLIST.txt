@@ -1,0 +1,171 @@
+================================================================================
+ENROLLMENT SYSTEM - QUICK DEPLOYMENT CHECKLIST
+================================================================================
+
+BEFORE YOU DEPLOY:
+
+[ ] 1. Choose a hosting provider (Bluehost, Hostinger, SiteGround, HostGator)
+      Cost: $2-6/month typical
+      Must have: PHP 7.2+, MySQL 5.7+
+
+[ ] 2. Sign up and get credentials:
+      - FTP/SFTP username & password
+      - MySQL host (usually 'localhost')
+      - MySQL username & password
+      - Database name
+
+[ ] 3. Note your domain name: ____________________
+
+DEPLOYMENT STEPS:
+
+[ ] 4. Create MySQL database using cPanel:
+      Database name: enrollment_system
+      User: [create one]
+      Password: [secure password]
+
+[ ] 5. Import database schema:
+      - Open phpMyAdmin in cPanel
+      - Select database
+      - Click Import
+      - Upload db_setup.sql file
+      - Click Go
+
+[ ] 6. Update config.php:
+      Edit these lines with YOUR hosting credentials:
+      
+      Line 2: define('DB_HOST', 'localhost'); // or hosting MySQL server
+      Line 3: define('DB_USER', 'your_db_username');
+      Line 4: define('DB_PASS', 'your_db_password');
+      Line 5: define('DB_NAME', 'enrollment_system');
+
+[ ] 7. Upload all files to hosting:
+      Use cPanel File Manager or FTP
+      Upload to: /public_html/
+      Include:
+      ✓ All PHP files
+      ✓ enrollee/ folder
+      ✓ admin/ folder
+      ✓ All configuration files
+
+[ ] 8. Set file permissions:
+      - Folders: 755
+      - Files: 644
+      (Right-click file → Change Permissions)
+
+[ ] 9. Enable SSL/HTTPS:
+      In cPanel:
+      - AutoSSL section
+      - Enable certificate
+      - Force HTTPS
+
+TESTING (After deployment):
+
+[ ] 10. Visit your domain and test:
+       URL: yourdomain.com/login.php
+       
+       Test 1: Admin Login
+       Email: admin@chp.com
+       Password: Admin@123
+       ✓ Should see admin dashboard
+
+       Test 2: User Signup
+       ✓ Create new user account
+       ✓ Should redirect to enrollee dashboard
+
+       Test 3: Course Enrollment
+       ✓ Enroll in a course
+       ✓ Should see payment modal
+
+       Test 4: Password Reset
+       ✓ Click "Forgot Password"
+       ✓ Submit new password
+       ✓ Admin approves in password_resets section
+       ✓ User logs in with new password
+
+[ ] 11. Fix any errors:
+       Check browser console (F12 → Console)
+       Check hosting error logs in cPanel
+
+SECURITY - CHANGE DEFAULT CREDENTIALS:
+
+[ ] 12. Update admin password:
+        - Log in as admin
+        - Go to password_resets section
+        - Request password reset
+        - Approve it
+        - OR directly update in MySQL
+
+[ ] 13. Review database backups:
+        - Set up automatic daily backups in cPanel
+        - Test restore procedure
+
+FINAL CHECKS:
+
+[ ] 14. Performance:
+        - Page loads < 3 seconds? ✓
+        - Database queries working? ✓
+        - Forms submitting properly? ✓
+
+[ ] 15. Mobile responsive:
+        - Test on phone browser ✓
+        - Buttons clickable? ✓
+        - Forms readable? ✓
+
+CONGRATULATIONS! Your system is now live.
+
+================================================================================
+IMPORTANT NOTES:
+================================================================================
+
+1. Database credentials (config.php) are sensitive - never commit to git
+2. Keep backups of your database weekly
+3. Monitor error logs in cPanel for issues
+4. Update PHP/MySQL versions when hosting recommends
+5. Set up SSL certificate immediately
+6. Change default admin password before launch
+7. Test all features before allowing users to register
+
+================================================================================
+COMMON ISSUES & SOLUTIONS:
+================================================================================
+
+Issue: "Cannot connect to database"
+Solution: Check config.php has correct credentials from cPanel MySQL section
+
+Issue: "No such file or directory" 
+Solution: Verify all files uploaded to public_html folder
+
+Issue: "Permission denied"
+Solution: Set file permissions to 644, folder permissions to 755
+
+Issue: "Session not working"
+Solution: Contact hosting support - may need session path adjustment
+
+Issue: "Forms not submitting"
+Solution: Check error logs in cPanel, verify database user has INSERT privilege
+
+================================================================================
+HOSTING PROVIDER RECOMMENDATIONS:
+================================================================================
+
+BLUEHOST     - $2.95/mo - Free domain, easy setup, good support
+HOSTINGER    - $2.99/mo - Fast, excellent value, good uptime
+SITEGROUND   - $2.99/mo - Premium quality, best support
+HOSTGATOR    - $2.75/mo - Affordable, reliable, cPanel included
+
+All include: PHP 7.2+, MySQL 5.7+, cPanel, phpMyAdmin, FTP/SFTP
+
+================================================================================
+SUPPORT:
+================================================================================
+
+Hosting Support: Available 24/7 via chat in cPanel
+PHP Issues: Check php.net documentation
+Database Issues: Check dev.mysql.com documentation
+cPanel Help: docs.cpanel.net
+
+================================================================================
+Estimated deployment time: 30-45 minutes
+Cost: $2-6 per month
+Uptime: 99.9% with reputable providers
+================================================================================

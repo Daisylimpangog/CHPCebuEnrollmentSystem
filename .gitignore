@@ -1,0 +1,46 @@
+# Environment and Configuration Files
+config.php
+.env
+.env.local
+.env.*.local
+
+# Database Files
+*.sql
+!db_setup.sql
+.DS_Store
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-project
+.sublime-workspace
+
+# Operating System Files
+Thumbs.db
+.DS_Store
+*.log
+
+# Composer and Dependencies
+vendor/
+composer.lock
+
+# Session and Cache Files
+sessions/
+cache/
+tmp/
+
+# Backup Files
+*.bak
+*.backup
+*~
+
+# Node modules (if any frontend tools used)
+node_modules/
+npm-debug.log
+
+# OS Generated Files
+.AppleDouble
+.AppleDB

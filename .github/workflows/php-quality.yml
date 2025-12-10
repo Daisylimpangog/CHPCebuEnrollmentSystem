@@ -1,0 +1,36 @@
+name: PHP Code Quality
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  php-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+        extensions: mysqli, pdo, pdo_mysql
+        tools: php-cs-fixer
+
+    - name: PHP Lint Check
+      run: |
+        find . -name '*.php' ! -path './vendor/*' -print0 | xargs -0 -n1 php -l
+
+    - name: Check for basic security issues
+      run: |
+        # Check for common PHP security issues
+        grep -r "eval(" . --include="*.php" && echo "WARNING: eval() function found" || true
+        grep -r "system(" . --include="*.php" && echo "WARNING: system() function found" || true
+        grep -r "exec(" . --include="*.php" && echo "WARNING: exec() function found" || true
+
+    - name: Validate configuration
+      run: |
+        php -r "require 'config.php'; echo 'Configuration valid';"
