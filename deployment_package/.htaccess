@@ -1,0 +1,17 @@
+# Block direct access to sensitive files
+<FilesMatch "\.env|config\.php|db_setup\.sql">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Force HTTPS (uncomment after SSL is setup)
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteCond {HTTPS} off
+#     RewriteRule ^(.*)$ https://{HTTP_HOST}{REQUEST_URI} [L,R=301]
+# </IfModule>
+
+# Allow .htaccess overrides
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+</IfModule>

@@ -1,0 +1,81 @@
+# 🚀 INFINITYFREE DEPLOYMENT INSTRUCTIONS
+
+## Files Ready to Upload
+All files in this folder are ready to upload to InfinityFree hosting.
+
+## Quick Setup (15 minutes)
+
+### 1. Create InfinityFree Account (FREE)
+- Go to: https://www.infinityfree.net
+- Sign up (no credit card needed)
+- Verify email
+
+### 2. Create Website
+- Control Panel > New Website
+- Choose free domain: yoursubdomain.infinityfree.net
+- Accept terms
+
+### 3. Get FTP Access
+- Control Panel > FTP Accounts
+- Create FTP account
+- Save credentials
+
+### 4. Upload Files
+- Download FileZilla: https://filezilla-project.org
+- Connect with FTP credentials:
+  - Host: ftp.infinityfree.net
+  - Username: Your FTP username
+  - Password: Your FTP password
+  - Port: 21
+- Drag all files from this folder to /htdocs/
+
+### 5. Create Database
+- Control Panel > MySQL Databases
+- Create new database
+- Save credentials (host, user, password, name)
+
+### 6. Import Database Schema
+- Control Panel > phpMyAdmin
+- Select your database
+- Click "Import"
+- Choose db_setup.sql
+- Click "Go"
+- All 9 tables created ✅
+
+### 7. Update Configuration
+- Edit config.php with database credentials:
+  - DB_HOST: localhost
+  - DB_USER: Your database user
+  - DB_PASS: Your database password
+  - DB_NAME: Your database name
+  - BASE_URL: https://yoursubdomain.infinityfree.net/
+
+### 8. Create Admin Account
+- Visit: https://yoursubdomain.infinityfree.net/setup_admin.php
+- Enter admin email: your@email.com
+- Create strong password
+- Click "Create Admin Account"
+
+### 9. Delete Setup File (IMPORTANT FOR SECURITY!)
+- Delete or rename setup_admin.php
+- This prevents unauthorized admin creation
+
+### 10. Test Your Site
+- Login: https://yoursubdomain.infinityfree.net/login.php
+- Admin Dashboard: https://yoursubdomain.infinityfree.net/admin/
+- Enrollee Dashboard: https://yoursubdomain.infinityfree.net/enrollee/
+
+## ✅ YOU'RE LIVE!
+Your enrollment system is now accessible to everyone!
+
+## Features Available
+- Student registration and login
+- Course browsing and enrollment
+- Admin application approval
+- Enrollee profile management
+- Password reset workflow
+- Admin dashboard with analytics
+
+## Support
+For issues, check the documentation in the repository:
+https://github.com/Daisylimpangog/CHPCebuEnrollmentSystem
