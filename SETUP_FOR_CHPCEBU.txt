@@ -1,0 +1,108 @@
+# 🚀 DEPLOYMENT - JUST 4 STEPS!
+
+Your system is configured for: **chpcebuenrollmentform.infinityfree.me**
+
+---
+
+## STEP 1️⃣ UPDATE config.php (5 minutes)
+
+**In InfinityFree File Manager:**
+- Right-click `config.php` → Edit
+- **COPY & PASTE THIS ENTIRE CODE:**
+
+```php
+<?php
+define('DB_HOST', 'localhost');
+define('DB_USER', 'if0_40651937');
+define('DB_PASS', '9nnXfc3E7ndGd');
+define('DB_NAME', 'if0_40651937_enrollmentdb');
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$conn->set_charset("utf8");
+session_start();
+ini_set('display_errors', 0);
+error_reporting(E_ALL);
+define('BASE_URL', 'https://chpcebuenrollmentform.infinityfree.me/');
+ini_set('session.cookie_secure', 1);
+ini_set('session.cookie_httponly', 1);
+function is_logged_in() {
+    return isset($_SESSION['user_id']);
+}
+function is_admin() {
+    return isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
+}
+function require_login() {
+    if (!is_logged_in()) {
+        header('Location: ' . BASE_URL . 'login.php');
+        exit();
+    }
+}
+function require_admin() {
+    if (!is_admin()) {
+        header('Location: ' . BASE_URL . 'index.php');
+        exit();
+    }
+}
+function generate_csrf_token() {
+    if (!isset($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['csrf_token'];
+}
+function validate_csrf_token($token) {
+    return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
+}
+?>
+```
+
+- Save (Ctrl+S)
+- Close notepad
+
+---
+
+## STEP 2️⃣ IMPORT DATABASE (3 minutes)
+
+**In InfinityFree Control Panel:**
+1. Click "phpMyAdmin"
+2. Select: `if0_40651937_enrollmentdb`
+3. Click "Import" tab
+4. Browse → Select `db_setup.sql`
+5. Click "Go"
+6. ✅ Tables created!
+
+---
+
+## STEP 3️⃣ CREATE ADMIN ACCOUNT (2 minutes)
+
+Visit: `https://chpcebuenrollmentform.infinityfree.me/setup_admin.php`
+
+Enter:
+- Email: your@email.com
+- Password: Create strong password (SAVE IT!)
+- Confirm: Type again
+
+Click: "Create Admin Account"
+
+---
+
+## STEP 4️⃣ DELETE setup_admin.php (30 seconds)
+
+**In File Manager:**
+- Find `setup_admin.php`
+- Right-click → Delete
+- Confirm delete
+
+---
+
+## ✅ DONE! YOUR SITE IS LIVE!
+
+Visit: **https://chpcebuenrollmentform.infinityfree.me**
+
+Login with your admin credentials!
+
+---
+
+**TOTAL TIME: 10 MINUTES**
+**TOTAL COST: $0**
